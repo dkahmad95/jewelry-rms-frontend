@@ -40,7 +40,7 @@ export default function SupplierForm() {
 
                     } catch (error) {
                         console.error('Error:', error);
-                        alert('Failed to create supplier. Please try again.');
+                        alert('Failed to create interfaces. Please try again.');
                     } finally {
                         setSubmitting(false);
                     }

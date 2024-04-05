@@ -47,7 +47,7 @@ const dispatch =useDispatch()
 
               } catch (error) {
                 console.error('Error:', error);
-                alert('Failed to update supplier. Please try again.');
+                alert('Failed to update interfaces. Please try again.');
               } finally {
                 setSubmitting(false);
               }

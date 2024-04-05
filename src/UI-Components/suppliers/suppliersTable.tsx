@@ -1,13 +1,14 @@
 
 import React, {useEffect} from "react";
-import {GridColDef} from "@mui/x-data-grid";
+import {GridColDef, GridEventListener} from "@mui/x-data-grid";
 import {useDispatch, useSelector} from "react-redux";
-import {Supplier} from "@/lib/data";
+
 import {RootState} from "@/lib/redux/store";
-import {getSuppliers} from "@/lib/redux/apiCalls/supplierAPIs";
+import {getOneSupplier, getSuppliers} from "@/lib/redux/apiCalls/supplierAPIs";
 import {DataTableSkeleton} from "@/UI-Components/suppliers/tableSkelaton";
 import DataTable from "@/UI-Components/sharedComponents/dataTable";
-import {useLocation} from "react-router";
+import {useLocation, useNavigate} from "react-router";
+import {Supplier} from "@/lib/interfaces/suppliers-interface";
 
 
 
@@ -15,12 +16,16 @@ import {useLocation} from "react-router";
 
 
 export default  function SuppliersTable () {
-const location = useLocation()
+
+
+    const navigate = useNavigate();
     const dispatch = useDispatch()
     const suppliers: Supplier[] = useSelector((state: RootState) => state.supplier.suppliers);
     const suppliersIsLoading: boolean = useSelector((state: RootState) => state.supplier.isFetching);
     const suppliersError: boolean = useSelector((state: RootState) => state.supplier.error);
 console.log('suppliers',suppliers)
+
+
     useEffect(() => {
         getSuppliers(dispatch).then(r => r).catch(Error)
     }, [dispatch]);
@@ -64,10 +69,18 @@ console.log('suppliers',suppliers)
         );
     }
 
+    const handleSuppliers: GridEventListener<'rowDoubleClick'> = async (
+        params, // GridRowParams
+    ) => {
+        const id: number = Number(params.id);
+        await getOneSupplier(dispatch, id);
+        navigate(`/singleSupplier/${id}`)
+    };
+
     return(
         <div>
             {suppliersIsLoading ? <DataTableSkeleton/> :
-            <DataTable columns={columns} rows={suppliers} path='/singleSupplier'/>
+            <DataTable columns={columns} rows={suppliers} handleEvent={handleSuppliers}/>
             }
         </div>
     )

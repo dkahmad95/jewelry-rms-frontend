@@ -16,11 +16,11 @@ const SupplierInfo =  ({ supplier, supplierId,pathname }: { supplier: Supplier, 
     const handleDeleteSupplier = async () => {
         try{
             await deleteSupplier(dispatch, supplierId)
-            console.log('supplier has been deleted')
+            console.log('interfaces has been deleted')
             navigate('/suppliersList')
         }catch (e){
             console.log(`failed to Delete supplier with ID ${supplierId}` , e)
-             alert('Failed to delete supplier. Please try again.');
+             alert('Failed to delete interfaces. Please try again.');
         }
     }
     return <div className="w-full mx-auto  rounded-lg overflow-hidden border-4 border-gray-50 hover:bg-gray-50">
