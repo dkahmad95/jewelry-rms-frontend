@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route,Navigate } from 'react-router-dom';
 import SuppliersList from "@/pages/Screens/Supplier/SuppliersList";
 import Layout from "@/pages/Screens/Layout/Layout";
@@ -21,6 +21,8 @@ import FrogetPassword from "@/pages/Screens/FrogetPassword/FrogetPassword";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/lib/redux/store";
 import {setIsAuth, setIsAuthGot} from "@/lib/redux/userRedux";
+import UnAuthLayout from "@/pages/Screens/Layout/UnAuthLayout";
+import AppLoader from "@/UI-Components/sharedComponents/appLoader";
 
 
 const authService = new AuthService();
@@ -51,8 +53,7 @@ const dispatch = useDispatch()
     useEffect(()=>{
 
         checkUser()
-        // checkUser()
-        // console.log("check if user is auth")
+
     },[isAuth])
 
 
@@ -71,7 +72,6 @@ const dispatch = useDispatch()
                             isAuth ? (
                                 <>
                                     <Route  element={<Layout/> }>
-                                        {/*<Route path="/" element={<Navigate to="/suppliersList"/>}/>*/}
                                         <Route path="suppliersList" element={<SuppliersList/>}/>
                                         <Route path="createSupplier" element={<CreateSupplier/>}/>
                                         <Route path="singleSupplier/:id" element={<SingleSupplier/>}/>
@@ -90,12 +90,12 @@ const dispatch = useDispatch()
 
                             ) : (
                                 <>
-                                    {/*<Route path="/" element={<Navigate to="/login"/>}/>*/}
+                                <Route  element={<UnAuthLayout/> }>
                                     <Route path="frogetPassword" element={<FrogetPassword/>}/>
                                     <Route path="confirmSignUpByEmail" element={<ConfirmSignUpByEmail/>}/>
                                     <Route path="register" element={<Register/>}/>
                                     <Route path="login" element={<LoginPage/>}/>
-
+                                </Route>
                                 </>
                             )
                         }
@@ -103,7 +103,7 @@ const dispatch = useDispatch()
 
                     </Routes>
                 ):(
-                    <h1>Getting authentication</h1>
+                    <AppLoader/>
                 )
             }
 

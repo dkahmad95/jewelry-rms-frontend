@@ -9,7 +9,7 @@ import {useNavigate} from "react-router";
 const authService = new AuthService();
 export default function SideNav() {
 
-    const navigator = useNavigate();
+    const navigate = useNavigate();
 
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2">
@@ -28,8 +28,8 @@ export default function SideNav() {
                 onClick={
                         async ()=> {
                         const res = await authService.signOut();
-                            navigator("/")
-                            navigator(0);
+                            navigate("/")
+                            navigate(0);
                     }
                 }>
           <PowerIcon className="w-6" />

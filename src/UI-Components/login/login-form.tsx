@@ -4,7 +4,6 @@
 import { UserCircleIcon,} from '@heroicons/react/24/outline';
 import {ArrowRightIcon} from '@heroicons/react/20/solid';
 import {Button} from '../sharedComponents/button';
-
 import {AuthService} from "@/lib/auth.service";
 import {lusitana} from "@/UI-Components/sharedComponents/fonts";
 import { LoginFormSchema} from "@/lib/data";
