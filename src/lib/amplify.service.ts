@@ -1,14 +1,14 @@
 
 import { Amplify } from 'aws-amplify';
-
+//TODO: put in env
 Amplify.configure({
     Auth: {
         Cognito: {
             userPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID  || '',
             userPoolClientId: process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID || '',
             identityPoolId: process.env.REACT_APP_COGNITO_IDENTITY_POOL_ID || '',
-            allowGuestAccess: process.env.REACT_APP_ALLOW_GUEST_ACCESS === 'true',
-            signUpVerificationMethod: (process.env.REACT_APP_SIGN_UP_VERIFICATION_METHOD as 'code' | 'link') || 'code',
+            allowGuestAccess: false,
+            signUpVerificationMethod:  'code',
         }
     }
 });
