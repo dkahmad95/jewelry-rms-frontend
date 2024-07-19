@@ -7,8 +7,9 @@ import {RootState} from "@/lib/redux/store";
 import {getOneSupplier, getSuppliers} from "@/lib/redux/apiCalls/supplierAPIs";
 import {DataTableSkeleton} from "@/UI-Components/suppliers/tableSkelaton";
 import DataTable from "@/UI-Components/sharedComponents/dataTable";
-import {useLocation, useNavigate} from "react-router";
+import { useNavigate} from "react-router";
 import {Supplier} from "@/lib/interfaces/suppliers-interface";
+import { Button } from "../sharedComponents/button";
 
 
 
@@ -17,14 +18,14 @@ import {Supplier} from "@/lib/interfaces/suppliers-interface";
 
 export default  function SuppliersTable () {
 
-
     const navigate = useNavigate();
     const dispatch = useDispatch()
+
     const suppliers: Supplier[] = useSelector((state: RootState) => state.supplier.suppliers);
     const suppliersIsLoading: boolean = useSelector((state: RootState) => state.supplier.isFetching);
     const suppliersError: boolean = useSelector((state: RootState) => state.supplier.error);
-console.log('suppliers',suppliers)
 
+    
 
     useEffect(() => {
         getSuppliers(dispatch).then(r => r).catch(Error)
@@ -59,8 +60,27 @@ console.log('suppliers',suppliers)
             type: 'string',
             width: 130,
         },
-
+        {
+            field: 'viewSupplier',
+            headerName: 'View Supplier',
+            width: 150,
+            renderCell: (params) => {
+                const navigate = useNavigate();
+                const handleClick = () => {
+                    navigate(`/singleSupplier/${params.row.id}`);
+                };
+    
+                return (
+                    <div className=" mt-4">
+                    <Button onClick={handleClick} className=" text-white h-6 ">
+                        View
+                    </Button>
+                </div>
+                );
+            },
+        },
     ];
+
     if (suppliersError) {
         return (
             <div className="flex justify-center items-center mt-16">

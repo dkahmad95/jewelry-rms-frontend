@@ -434,7 +434,7 @@ export default function TransactionForm({ supplierId }: { supplierId: string }) 
             Cancel
           </Link>
           <Button className={`text-white `} type="submit"  onClick={handleSubmission} >
-            Create Supplier
+            Add Transaction
           </Button>
         </div>
       </div>

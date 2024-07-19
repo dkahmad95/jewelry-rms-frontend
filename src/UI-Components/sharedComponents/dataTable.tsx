@@ -17,8 +17,7 @@ type DataTableProps = {
 
 export default function DataTable({ rows, columns ,handleEvent}:DataTableProps) {
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch()
+
 
     const getRowClassName = (params: GridRowParams) => {
         return "cursor-pointer";
@@ -36,6 +35,7 @@ export default function DataTable({ rows, columns ,handleEvent}:DataTableProps) 
                 }}
                 pageSizeOptions={[5, 10]}
                 checkboxSelection
+
                 onRowDoubleClick={handleEvent}
 
                 getRowClassName={getRowClassName} // Add cursor pointer to row

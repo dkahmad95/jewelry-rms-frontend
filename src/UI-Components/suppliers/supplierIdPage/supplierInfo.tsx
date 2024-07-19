@@ -1,12 +1,13 @@
 'use client'
 import React,  {useState} from 'react';
-import {Supplier} from "@/lib/data";
+
 import {useDispatch} from "react-redux";
 import {deleteSupplier,} from "@/lib/redux/apiCalls/supplierAPIs";
 import {DeleteButton, UpdateButton} from "@/UI-Components/suppliers/buttons";
 import BasicModal from "@/UI-Components/sharedComponents/modal";
 import {useNavigate} from "react-router";
 import {Link} from "react-router-dom";
+import {Supplier} from "@/lib/interfaces/suppliers-interface";
 
 const SupplierInfo =  ({ supplier, supplierId,pathname }: { supplier: Supplier, supplierId: number ,pathname: string}) => {
     const navigate = useNavigate()

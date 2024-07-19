@@ -67,7 +67,7 @@ export default function SupplierForm() {
                                     <Input
                                         id="supplier"
                                         name="name"
-                                        className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                                        className="peer block w-full rounded-md border border-gray-200 py-2  text-sm outline-2 placeholder:text-gray-500"
                                         value={values.name}
                                         onChange={handleChange}
                                         onBlur={handleBlur}

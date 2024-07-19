@@ -9,7 +9,7 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 
 export function Select({ className, label, options, labelClassName, ...rest }: SelectProps) {
   return (
-    <div className="mb-4 relative">
+    <div className=" relative">
       {label && (
         <label
           className={clsx(

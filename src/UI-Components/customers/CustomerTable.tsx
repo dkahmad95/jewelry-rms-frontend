@@ -8,26 +8,51 @@ const CustomerTable = () => {
    const customersIsLoading = false
    const customersError = false
 
-    // const columns: GridColDef[] = [
-    //     { field: 'id', headerName: 'ID', width: 70 },
-    //     { field: 'name', headerName: 'Name', width: 130 },
-    //     { field: 'phoneNumber', headerName: 'Phone Number', width: 130 },
-    //     {
-    //         field: 'total',
-    //         headerName: 'Total',
-    //         type: 'number',
-    //         width: 130,
-    //     },
-    //     {
-    //         field: 'Date',
-    //         headerName: 'Ramli Balance',
-    //         type: 'number',
-    //         width: 130,
-    //     },
-    //
-    //
-    // ];
+   const customerColumns = [
+    { field: 'date', headerName: 'Date', width: 150 },
+    { field: 'customerName', headerName: 'Customer Name', width: 250 },
+    { field: 'phoneNumber', headerName: 'Phone Number', width: 250 },
+    { field: 'total', headerName: 'Total', width: 250 },
+    
+];
 
+const customerData = [
+    {
+        id: 1,
+        date: "09/12/2023",
+        customerName: "Ahmad Dekmak",
+        phoneNumber: "961-78-940697",
+        total: "$320.00",
+    },
+    {
+        id: 2,
+        date: "09/13/2023",
+        customerName: "John Doe",
+        phoneNumber: "123-456-7890",
+        total: "$450.00",
+    },
+    {
+        id: 3,
+        date: "09/14/2023",
+        customerName: "Jane Smith",
+        phoneNumber: "987-654-3210",
+        total: "$520.00",
+    },
+    {
+        id: 4,
+        date: "09/15/2023",
+        customerName: "Alice Johnson",
+        phoneNumber: "555-123-4567",
+        total: "$600.00",
+    },
+    {
+        id: 5,
+        date: "09/16/2023",
+        customerName: "Bob Brown",
+        phoneNumber: "444-567-8901",
+        total: "$700.00",
+    }
+];
     
     if (customersError) {
         return (
@@ -40,7 +65,7 @@ const CustomerTable = () => {
     return(
         <div>
             {customersIsLoading ? <DataTableSkeleton/> :
-                <DataTable columns={[]} rows={[]} path=''/>
+                <DataTable columns={customerColumns} rows={customerData}/>
             }
         </div>
     )

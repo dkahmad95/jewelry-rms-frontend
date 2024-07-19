@@ -1,4 +1,5 @@
-import {Supplier} from "@/lib/data";
+import { Supplier } from "./interfaces/suppliers-interface";
+
 export async function generateStaticParams(): Promise<{ id: number }[]> {
     try {
         // Fetch interfaces data from the API
