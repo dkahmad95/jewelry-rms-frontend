@@ -1,7 +1,7 @@
 import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import {Link} from "react-router-dom";
 
-// import { deleteInvoice } from '@/app/lib/actions';
+
 
 export function CreateButton({lable , path}:{lable:string, path: string}) {
   return (

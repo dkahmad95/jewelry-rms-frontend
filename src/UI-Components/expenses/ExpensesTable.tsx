@@ -1,26 +1,43 @@
 import {GridColDef} from "@mui/x-data-grid";
 
 import DataTable from "@/UI-Components/sharedComponents/dataTable";
-import React from "react";
+import React, {useEffect} from "react";
 import {DataTableSkeleton} from "@/UI-Components/suppliers/tableSkelaton";
+import {useNavigate} from "react-router";
+import {useDispatch, useSelector} from "react-redux";
+
+import {RootState} from "@/lib/redux/store";
+import {Expenses} from "@/lib/interfaces/expenses-interface";
+import {getSuppliers} from "@/lib/redux/apiCalls/supplierAPIs";
+import {getExpenses} from "@/lib/redux/apiCalls/expensesAPIs";
 
 const ExpenseTable = () => {
-    const expensesIsLoading = false
-    const expensesError = false
+    const navigate = useNavigate();
+    const dispatch = useDispatch()
 
+    useEffect(() => {
+        getExpenses(dispatch).then(r => r).catch(Error)
+    }, [dispatch]);
+
+    const expenses: Expenses[] = useSelector((state: RootState) => state.expenses.expenses);
+    const expensesIsLoading: boolean = useSelector((state: RootState) => state.expenses.isFetching);
+    const expensesError: boolean = useSelector((state: RootState) => state.expenses.error);
+console.log("expenses",expenses)
+console.log("expensesIsLoading",expensesIsLoading)
+console.log("expensesError",expensesError)
     const columns: GridColDef[] = [
         { field: 'id', headerName: 'ID', width: 70 },
-        { field: 'expenseName', headerName: 'Expense', width: 130 },
-        { field: 'description', headerName: 'Description', width: 130 },
+        { field: 'name', headerName: 'Name', width: 130 },
+        { field: 'description', headerName: 'Description', width: 200 },
         {
-            field: 'expenseValue',
+            field: 'value',
             headerName: 'Value',
             type: 'number',
             width: 130,
         },
         {
-            field: 'Date',
-            headerName: 'createdDate',
+            field: 'createdDate',
+            headerName: 'Date',
 
             width: 130,
         },
@@ -40,7 +57,7 @@ const ExpenseTable = () => {
     return(
         <div>
             {expensesIsLoading ? <DataTableSkeleton/> :
-                <DataTable columns={columns} rows={[]} path=''/>
+                <DataTable columns={columns} rows={expenses}  />
             }
         </div>
     )

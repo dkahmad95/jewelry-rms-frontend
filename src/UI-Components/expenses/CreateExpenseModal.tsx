@@ -78,7 +78,7 @@
                                         options={expensesOptions}
                                         // value={item.item}
                                         // onChange={(e) => handleInputChange(e, index)}
-                                        className=" w-[220px] mx-3 xl:w-40 mb-0 "
+                                        className=" w-[220px] mx-3 xl:w-40 mb-4 "
 
                                     />
                                     <Input
@@ -88,7 +88,7 @@
                                         type="text"
                                         // value={form.desc}
                                         // onChange={(e) => handleInputChange(e, index)}
-                                        className=" w-[300px] items-center mx-3 xl:w-40"
+                                        className=" w-[300px] items-center mx-3 xl:w-40 mb-4"
                                     />
                                     <Input
                                         name="amount"
@@ -97,7 +97,7 @@
                                         type="number"
                                         // value={form.desc}
                                         // onChange={(e) => handleInputChange(e, index)}
-                                        className=" w-[300px] items-center mx-3 xl:w-40"
+                                        className=" w-[300px] items-center mx-3 xl:w-40 mb-4"
                                     />
                                 </div>
                             </Typography>
@@ -118,7 +118,7 @@
                                         setOpen(false);
                                     }}
                                     className={`text-white `} type="submit">
-                                    Update Invoice
+                                    Create
                                 </Button>
                             </div>
 

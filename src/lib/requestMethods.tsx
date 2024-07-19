@@ -4,7 +4,7 @@ import {AuthService} from "@/lib/auth.service";
 import {fetchAuthSession} from "@aws-amplify/auth";
 
 const BASE_URL = "http://localhost:8080/api/";
-const authService = new AuthService()
+
 export const TOKEN = async () => {
 
     const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
@@ -15,17 +15,7 @@ export const TOKEN = async () => {
     }
 
 
-    // const persistedData = localStorage.getItem("persist:root");
-    //
-    //
-    // if (persistedData) {
-    //     const parsedData = JSON.parse(persistedData);
-    //     const user = JSON.parse(parsedData?.user || "{}").currentUser || {};
-    //     const token = user.token?.split("|")[1];
-    //
-    //     return token;
-    // }
-    // return null;
+  
 };
 
 export const userRequest = axios.create({

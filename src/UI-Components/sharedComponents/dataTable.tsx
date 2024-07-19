@@ -1,6 +1,6 @@
 'use client'
 import * as React from 'react';
-import { DataGrid} from '@mui/x-data-grid';
+import {DataGrid, GridRowParams} from '@mui/x-data-grid';
 
 
 import {useDispatch} from "react-redux";
@@ -9,13 +9,20 @@ import {useNavigate} from "react-router";
 import {getOneSupplier} from "@/lib/redux/apiCalls/supplierAPIs";
 
 
+type DataTableProps = {
+    rows: any[];
+    columns: any[];
+    handleEvent?: any;
+};
+
+export default function DataTable({ rows, columns ,handleEvent}:DataTableProps) {
 
 
-// @ts-ignore
-export default function DataTable({ rows, columns, path }) {
-    console.log('path', path)
-    const navigate = useNavigate();
-    const dispatch = useDispatch()
+
+    const getRowClassName = (params: GridRowParams) => {
+        return "cursor-pointer";
+    };
+
     return (
         <div style={{ height: 400, width: '100%' }}>
             <DataGrid
@@ -28,16 +35,10 @@ export default function DataTable({ rows, columns, path }) {
                 }}
                 pageSizeOptions={[5, 10]}
                 checkboxSelection
-                onRowDoubleClick={async (params)=> {
-                    const id: number = Number(params.id);
-                   await getOneSupplier(dispatch, id);
-                    navigate(`${path}/${id}`)
 
-                }}
+                onRowDoubleClick={handleEvent}
 
-                // onRowClick={(params)=> {
-                //     route.push(`${pathName+'/'+params.id}`)
-                // }}
+                getRowClassName={getRowClassName} // Add cursor pointer to row
             />
         </div>
     );

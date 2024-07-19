@@ -32,15 +32,14 @@ export default function App() {
     const authGot = useSelector((state:RootState)=>state.user.authGot);
 const dispatch = useDispatch()
 
-    //TODO: FIX THE BUG (when i refresh the page goes 404)
-    //TODO: HIDE URL
-// const [isAuth, setIsAuth] = useState(false)
+  
+  
+
     const checkUser = async ()=>{
         try {
            const res =  await authService.getAuthenticatedUser();
            const idToken = await authService.getIdToken();
-           console.log(idToken);
-           console.log(res)
+          
             dispatch(setIsAuth(true))
             dispatch(setIsAuthGot())
         }catch (e) {
@@ -59,11 +58,9 @@ const dispatch = useDispatch()
 
     return (
         <Router>
-
             {
                 authGot?(
                     <Routes>
-
                         <Route
                             path="/"
                             element={isAuth ? <Navigate to="/suppliersList" /> : <Navigate to="/login" />}

@@ -12,7 +12,8 @@ import {
 
 import {Dispatch} from "redux";
 import {publicRequest,userRequest} from "@/lib/requestMethods";
-import {CreateSupplier, UpdatedSupplier} from "@/lib/data";
+import {CreateSupplier, UpdatedSupplier} from "@/lib/interfaces/suppliers-interface";
+
 
 
 //get suppliers
@@ -27,7 +28,7 @@ export const getSuppliers = async (dispatch: Dispatch)=>{
         console.error("Req failed:", err);
     }
 }
-//get One supplier
+//get One interfaces
 export const getOneSupplier = async (dispatch: Dispatch, id: number)=>{
     dispatch(getOneSupplierStart());
     try{
@@ -54,7 +55,7 @@ export const createSupplier = async (dispatch : Dispatch, supplier : CreateSuppl
 
 
 
-//update supplier using Thunk
+//update interfaces using Thunk
 export const updateSupplier = async (newSupplier : UpdatedSupplier, id : number ,dispatch: Dispatch) => {
 
         dispatch(updateSuppliersStart());

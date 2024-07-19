@@ -1,13 +1,15 @@
 
 import React, {useEffect} from "react";
-import {GridColDef} from "@mui/x-data-grid";
+import {GridColDef, GridEventListener} from "@mui/x-data-grid";
 import {useDispatch, useSelector} from "react-redux";
-import {Supplier} from "@/lib/data";
+
 import {RootState} from "@/lib/redux/store";
-import {getSuppliers} from "@/lib/redux/apiCalls/supplierAPIs";
+import {getOneSupplier, getSuppliers} from "@/lib/redux/apiCalls/supplierAPIs";
 import {DataTableSkeleton} from "@/UI-Components/suppliers/tableSkelaton";
 import DataTable from "@/UI-Components/sharedComponents/dataTable";
-import {useLocation} from "react-router";
+import { useNavigate} from "react-router";
+import {Supplier} from "@/lib/interfaces/suppliers-interface";
+import { Button } from "../sharedComponents/button";
 
 
 
@@ -15,12 +17,16 @@ import {useLocation} from "react-router";
 
 
 export default  function SuppliersTable () {
-const location = useLocation()
+
+    const navigate = useNavigate();
     const dispatch = useDispatch()
+
     const suppliers: Supplier[] = useSelector((state: RootState) => state.supplier.suppliers);
     const suppliersIsLoading: boolean = useSelector((state: RootState) => state.supplier.isFetching);
     const suppliersError: boolean = useSelector((state: RootState) => state.supplier.error);
-console.log('suppliers',suppliers)
+
+    
+
     useEffect(() => {
         getSuppliers(dispatch).then(r => r).catch(Error)
     }, [dispatch]);
@@ -54,8 +60,27 @@ console.log('suppliers',suppliers)
             type: 'string',
             width: 130,
         },
-
+        {
+            field: 'viewSupplier',
+            headerName: 'View Supplier',
+            width: 150,
+            renderCell: (params) => {
+                const navigate = useNavigate();
+                const handleClick = () => {
+                    navigate(`/singleSupplier/${params.row.id}`);
+                };
+    
+                return (
+                    <div className=" mt-4">
+                    <Button onClick={handleClick} className=" text-white h-6 ">
+                        View
+                    </Button>
+                </div>
+                );
+            },
+        },
     ];
+
     if (suppliersError) {
         return (
             <div className="flex justify-center items-center mt-16">
@@ -64,10 +89,18 @@ console.log('suppliers',suppliers)
         );
     }
 
+    const handleSuppliers: GridEventListener<'rowDoubleClick'> = async (
+        params, // GridRowParams
+    ) => {
+        const id: number = Number(params.id);
+        await getOneSupplier(dispatch, id);
+        navigate(`/singleSupplier/${id}`)
+    };
+
     return(
         <div>
             {suppliersIsLoading ? <DataTableSkeleton/> :
-            <DataTable columns={columns} rows={suppliers} path='/singleSupplier'/>
+            <DataTable columns={columns} rows={suppliers} handleEvent={handleSuppliers}/>
             }
         </div>
     )
