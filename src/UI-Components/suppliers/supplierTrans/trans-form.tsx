@@ -21,7 +21,7 @@ export default function TransactionForm({ supplierId }: { supplierId: string }) 
     totalPrice: number;
   }
 
-  // ///supplier select options
+  // ///interfaces select options
   // const supplierOptions = [
   //   { value: "supplier1", label: "Supplier 1" },
   //   { value: "supplier2", label: "Supplier 2" },
@@ -251,14 +251,14 @@ export default function TransactionForm({ supplierId }: { supplierId: string }) 
   return (
       <div className="w-full">
 
-        {/* supplier Info */}
+        {/* interfaces Info */}
         <div className="flex flex-col w-full items-center justify-between mb-4 gap-y-3 md:flex-row ">
           <h1 className={`${lusitana.className} text-2xl`}>
             Supplier Transaction
           </h1>
           {/*<div className="flex w-full items-center justify-center gap-x-3 md:justify-end">*/}
           {/*  <Select*/}
-          {/*      label="Select a supplier"*/}
+          {/*      label="Select a interfaces"*/}
           {/*      options={supplierOptions}*/}
           {/*      labelClassName="mb-2 ml-1 "*/}
           {/*      className="h-7"*/}
@@ -434,7 +434,7 @@ export default function TransactionForm({ supplierId }: { supplierId: string }) 
             Cancel
           </Link>
           <Button className={`text-white `} type="submit"  onClick={handleSubmission} >
-            Create Supplier
+            Add Transaction
           </Button>
         </div>
       </div>

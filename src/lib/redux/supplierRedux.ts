@@ -1,6 +1,7 @@
 'use client'
 import { createSlice } from "@reduxjs/toolkit";
-import {Supplier} from '@/lib/data'
+import {Supplier} from "@/lib/interfaces/suppliers-interface";
+
 
 const suppliersSlice = createSlice({
     name: "suppliers",
@@ -30,7 +31,7 @@ const suppliersSlice = createSlice({
         },
 
 
-        // Get One supplier
+        // Get One interfaces
         getOneSupplierStart: (state) => {
             state.oneSupplierIsFetching = true;
             state.oneSupplierError = false;

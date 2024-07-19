@@ -1,20 +1,14 @@
 
 import { Amplify } from 'aws-amplify';
-//TODO: put in env
+
 Amplify.configure({
     Auth: {
         Cognito: {
-            //  Amazon Cognito User Pool ID
-            userPoolId:  'eu-west-1_onyNXtmC6',
-            // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-            userPoolClientId: '1s4dgodfp37knovo8iqq27nq6a',
-            // REQUIRED only for Federated Authentication - Amazon Cognito Identity Pool ID
-            identityPoolId:'eu-west-1:1ce3967f-6a62-4f72-b0e1-66e8d5b43e7b',
-            // OPTIONAL - Set to true to use your identity pool's unauthenticated role when user is not logged in
-            allowGuestAccess: false,
-            // OPTIONAL - This is used when autoSignIn is enabled for auth.signUp
-            // 'code' is used for auth.confirmSignUp, 'link' is used for email link verification
-            signUpVerificationMethod: 'code', // 'code' | 'link'
+            userPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID  || '',
+            userPoolClientId: process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID || '',
+            identityPoolId: process.env.REACT_APP_COGNITO_IDENTITY_POOL_ID || '',
+            allowGuestAccess: process.env.REACT_APP_ALLOW_GUEST_ACCESS === 'true',
+            signUpVerificationMethod: (process.env.REACT_APP_SIGN_UP_VERIFICATION_METHOD as 'code' | 'link') || 'code',
         }
     }
 });

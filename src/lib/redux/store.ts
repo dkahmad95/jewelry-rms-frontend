@@ -15,6 +15,7 @@ import {
 import supplierRedux from "@/lib/redux/supplierRedux";
 import userRedux from "@/lib/redux/userRedux";
 import storage from "@/lib/redux/storage";
+import expensesRedux from "@/lib/redux/expensesRedux";
 
 const persistConfig = {
     key: "root",
@@ -27,6 +28,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 const rootReducer = combineReducers({
     user: userRedux,
     supplier: supplierRedux,
+    expenses: expensesRedux,
 
 });
 

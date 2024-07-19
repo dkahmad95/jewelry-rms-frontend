@@ -10,11 +10,12 @@ import {
 
 import { Input } from "../../sharedComponents/input";
 import {Formik} from "formik";
-import {Supplier, UpdateSupplierSchema} from "@/lib/data";
+import { UpdateSupplierSchema} from "@/lib/data";
 import {useDispatch} from "react-redux";
 import {getSuppliers, updateSupplier} from "@/lib/redux/apiCalls/supplierAPIs";
 import {Button} from "@/UI-Components/sharedComponents/button";
 import {useNavigate} from "react-router";
+import {Supplier} from "@/lib/interfaces/suppliers-interface";
 
 
 
@@ -47,7 +48,7 @@ const dispatch =useDispatch()
 
               } catch (error) {
                 console.error('Error:', error);
-                alert('Failed to update supplier. Please try again.');
+                alert('Failed to update interfaces. Please try again.');
               } finally {
                 setSubmitting(false);
               }
