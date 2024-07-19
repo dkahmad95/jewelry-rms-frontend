@@ -1,5 +1,5 @@
 'use client'
-import  { object, string, number, array,ref } from "Yup";
+import  { object, string, number, array,ref } from "yup";
 
 
 
