@@ -3,7 +3,7 @@ import axios from "axios";
 
 import {fetchAuthSession} from "@aws-amplify/auth";
 
-const BASE_URL = "http://127.0.0.1:8080";
+const BASE_URL = "http://localhost:8080/api/";
 
 export const TOKEN = async () => {
 
