@@ -3,14 +3,14 @@ import axios from "axios";
 
 import {fetchAuthSession} from "@aws-amplify/auth";
 
-const BASE_URL = "http://192.14.137.101:8080/api";
+const BASE_URL = "https://jewelry-rms-backend1.onrender.com/api";
 
 export const TOKEN = async () => {
 
     const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
     if(accessToken)
     {
-        console.log(accessToken.toString())
+        
         return accessToken.toString()
     }
 

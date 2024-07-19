@@ -3,7 +3,6 @@ import { Amplify } from 'aws-amplify';
 //TODO: put in env
 Amplify.configure({
     Auth: {
-        // put the min env
         Cognito: {
             //  Amazon Cognito User Pool ID
             userPoolId:  'eu-west-1_onyNXtmC6',

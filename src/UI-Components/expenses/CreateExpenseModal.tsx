@@ -71,7 +71,7 @@
                                 <b>{Title && Title}</b>
                             </Typography>
                             <Typography id="modal-modal-description" sx={{mt: 2}}>
-                                <div>
+                                <div className=" flex flex-col items-center justify-center">
                                     <Select
                                         name="item"
                                         // id={`item-${index}`}
