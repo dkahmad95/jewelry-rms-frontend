@@ -3,11 +3,9 @@ import axios from "axios";
 
 import { fetchAuthSession } from "@aws-amplify/auth";
 
-//  const BASE_URL = "http://localhost:8080/api";
+const BASE_URL = "http://localhost:8080/api";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL
-
-
+// const BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
 export const TOKEN = async () => {
   const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};

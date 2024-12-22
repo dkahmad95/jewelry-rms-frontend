@@ -5,7 +5,7 @@ import { PlusIcon } from "@heroicons/react/24/outline";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import { getOneSupplier } from "@/lib/redux/apiCalls/supplierAPIs";
+import { getOneSupplier } from "@/lib/apiCalls/supplierAPIs";
 import Breadcrumbs from "@/UI-Components/sharedComponents/breadcrumbs";
 import { Button } from "@/UI-Components/sharedComponents/button";
 import { SupplierInfoSkeleton } from "@/UI-Components/suppliers/supplierIdPage/supplierInfoSkelaton";

@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import { Expenses } from "@/lib/interfaces/expenses-interface";
 
-import { getExpenses } from "@/lib/redux/apiCalls/expensesAPIs";
+import { getExpenses } from "@/lib/apiCalls/expensesAPIs";
 
 const ExpenseTable = () => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const ExpenseTable = () => {
   const expensesError: boolean = useSelector(
     (state: RootState) => state.expenses.error
   );
-  
+
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "name", headerName: "Name", width: 130 },
