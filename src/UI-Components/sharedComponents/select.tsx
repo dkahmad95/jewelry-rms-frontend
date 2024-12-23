@@ -15,7 +15,7 @@ export function Select({
   ...rest
 }: SelectProps) {
   return (
-    <div className="gap-2 w-[250px]">
+    <div className="gap-2 ">
       {label && (
         <label
           className={clsx(

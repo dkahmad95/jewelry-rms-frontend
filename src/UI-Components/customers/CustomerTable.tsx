@@ -1,7 +1,7 @@
 import { GridColDef, GridDeleteIcon } from "@mui/x-data-grid";
 import { CustomerInvoice } from "@/lib/interfaces/customerInvoice-Interface";
 import DataTable from "@/UI-Components/sharedComponents/dataTable";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { DataTableSkeleton } from "@/UI-Components/suppliers/tableSkelaton";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ import {
   getCustomerInvoice,
 } from "@/lib/apiCalls/customerinvoiceAPIs";
 import { TrashIcon } from "@heroicons/react/24/outline";
+import BasicModal from "../sharedComponents/modal";
 
 const CustomerTable = () => {
   const dispatch = useDispatch();
@@ -25,9 +26,14 @@ const CustomerTable = () => {
   const customersInvoicesError: boolean = useSelector(
     (state: RootState) => state.customerInvoice.error
   );
+  const [open, setOpen] = useState(false); // For modal visibility
+  const [selectedId, setSelectedId] = useState<number | null>(null); // To track the selected row ID
 
-  const handleDelete = (id: number) => {
-    deleteCustomerInvoice(dispatch, id);
+  const handleDelete = () => {
+    if (selectedId !== null) {
+      deleteCustomerInvoice(dispatch, selectedId);
+      setOpen(false);
+    }
   };
 
   useEffect(() => {
@@ -66,7 +72,6 @@ const CustomerTable = () => {
       headerName: "View Invoice",
       width: 150,
       renderCell: (params) => {
-        console.log(typeof params.id);
         const navigate = useNavigate();
         const handleClick = () => {
           navigate(`/receipt`);
@@ -78,8 +83,11 @@ const CustomerTable = () => {
               View
             </Button>
             <TrashIcon
-              className="w-5 text-red-600"
-              onClick={() => handleDelete(params.row.id)}
+              className="w-5 text-red-600 cursor-pointer"
+              onClick={() => {
+                setSelectedId(params.row.id); // Save the row ID
+                setOpen(true); // Open the modal
+              }}
             />
           </div>
         );
@@ -104,6 +112,15 @@ const CustomerTable = () => {
       ) : (
         <DataTable columns={columns} rows={customersInvoices} />
       )}
+
+      {/* Modal */}
+      <BasicModal
+        open={open}
+        setOpen={setOpen}
+        Title={`Delete Customer Invoice`}
+        Body={`Are you sure you want to delete this invoice?`}
+        handleClick={handleDelete} // Use the correct delete handler
+      />
     </div>
   );
 };
