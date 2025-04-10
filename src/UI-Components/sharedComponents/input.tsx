@@ -16,7 +16,7 @@ export function Input({ className, label, ...rest }: InputProps) {
       <input
         {...rest}
         className={clsx(
-          "peer block w-full rounded-md border  border-gray-200 py-[9px] pl-4 text-sm outline-2 placeholder:text-gray-500",
+          "peer block w-full rounded-md border ml-8  border-gray-200 py-[9px] pl-4 text-sm outline-2 placeholder:text-gray-500",
           className
         )}
       />
