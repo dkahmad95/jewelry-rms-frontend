@@ -30,7 +30,6 @@ export const getSuppliers = async (dispatch: Dispatch) => {
   try {
     const res = await userRequest.get("/supplier");
     dispatch(getSuppliersSuccess(res.data));
-    console.log("res", res);
   } catch (err) {
     dispatch(getSuppliersFailure());
     console.error("Req failed:", err);

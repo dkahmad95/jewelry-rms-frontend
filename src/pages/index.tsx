@@ -34,7 +34,7 @@ export default function App() {
   const isAuth = useSelector((state: RootState) => state.user.isAuth);
   const authGot = useSelector((state: RootState) => state.user.authGot);
   const dispatch = useDispatch();
-
+ 
   const checkUser = async () => {
     try {
       const res = await authService.getAuthenticatedUser();

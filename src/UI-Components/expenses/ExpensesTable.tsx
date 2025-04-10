@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import DataTable from "@/UI-Components/sharedComponents/dataTable";
 import { DataTableSkeleton } from "@/UI-Components/suppliers/tableSkelaton";
-import { useNavigate } from "react-router";
 import { RootState } from "@/lib/redux/store";
 import { Expenses } from "@/lib/interfaces/expenses-interface";
 import { deleteExpense, getExpenses } from "@/lib/apiCalls/expensesAPIs";

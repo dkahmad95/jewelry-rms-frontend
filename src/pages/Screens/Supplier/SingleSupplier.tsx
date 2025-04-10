@@ -29,8 +29,7 @@ const SingleSupplier = () => {
   const supplierIsError: boolean = useSelector(
     (state: RootState) => state.supplier.oneSupplierError
   );
-  console.log("supplierIsError", supplierIsError);
-  console.log("supplier", supplier);
+
   useEffect(() => {
     getOneSupplier(dispatch, supplierId).then();
   }, [dispatch]);
